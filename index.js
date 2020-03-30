@@ -1,10 +1,14 @@
 (function() {
+
+  const tempPara = document.querySelector('p')
+
   async function getData() {
-    let data = await fetch('http://localhost:3000/')
-    .then(res => {
-      return res.json()
-    })
-    return data
+    const response = await fetch('http://localhost:3000/')
+    return await response.json()
   }
-  console.log(getData())
+
+  getData().then(data => {
+    tempPara.textContent = data.main.temp
+  })
+
 })()
