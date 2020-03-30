@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const axios = require('axios');
 const fetch = require('node-fetch');
 
 const APIKey = 'aaf81a2a5005fe5f583606e78b54cfd0'
