@@ -1,6 +1,7 @@
 (function() {
 
-  const tempPara = document.querySelector('p')
+  const celsiusPara = document.getElementById('celsiusPara')
+  const fahrenheitPara = document.getElementById('fahrenheitPara')
 
   //get devices current location
   if (!navigator.geolocation) {
@@ -19,7 +20,11 @@
     }
 
     getData(lat, long).then(data => {
-      tempPara.innerHTML = `${data.main.temp} &deg;C`
+      const celsius = data.main.temp
+      const fahrenheit = ((celsius * 9) / 5) + 32
+
+      celsiusPara.innerHTML = `${celsius} &deg;C`;
+      fahrenheitPara.innerHTML = `${fahrenheit} &deg;F`;
     })
   }
   
