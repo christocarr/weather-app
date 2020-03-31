@@ -19,7 +19,7 @@
     }
 
     getData(lat, long).then(data => {
-      tempPara.textContent = data.main.temp
+      tempPara.innerHTML = `${data.main.temp} &deg;C`
     })
   }
   
