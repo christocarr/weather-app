@@ -23,23 +23,13 @@
 
     getData(lat, long).then(data => {
       
-      renderBody(data)
+      showBodyColor(data)
+      showTemperature(data)
 
-      const celsiusMin = Math.round(data.main.temp_min);
-      const fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
-
-      const celsiusMax = Math.round(data.main.temp_max);
-      const fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32)
-
-      celsiusMinPara.innerHTML = `Min ${celsiusMin}&deg;C`;
-      fahrenheitMinPara.innerHTML = `Min ${fahrenheitMin}&deg;F`;
-
-      celsiusMaxPara.innerHTML = `Max ${celsiusMax}&deg;C`;
-      fahrenheitMaxPara.innerHTML = `Max ${fahrenheitMax}&deg;F`;
     });
   }
 
-  const renderBody = (data) => {
+  const showBodyColor = (data) => {
     if (data.main.temp > 25) {
       body.classList.add('warm')
     } else if (data.main.temp < 15) {
@@ -47,6 +37,20 @@
     } else {
       body.classList.add('medium')
     }
+  }
+
+  const showTemperature = (data) => {
+    const celsiusMin = Math.round(data.main.temp_min);
+    const fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
+
+    const celsiusMax = Math.round(data.main.temp_max);
+    const fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32)
+
+    celsiusMinPara.innerHTML = `Min ${celsiusMin}&deg;C`;
+    fahrenheitMinPara.innerHTML = `Min ${fahrenheitMin}&deg;F`;
+
+    celsiusMaxPara.innerHTML = `Max ${celsiusMax}&deg;C`;
+    fahrenheitMaxPara.innerHTML = `Max ${fahrenheitMax}&deg;F`;
   }
 
 })();
