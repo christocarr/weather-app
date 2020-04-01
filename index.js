@@ -30,13 +30,25 @@
   }
 
   const showBodyColor = (data) => {
-    if (data.main.temp > 25) {
+
+    const currentTemp = data.main.temp
+
+    if (currentTemp > 28) {
+      body.classList.add('hot')
+    }
+
+    if (currentTemp > 19 && currentTemp <= 27) {
       body.classList.add('warm')
-    } else if (data.main.temp < 15) {
-      body.classList.add('cold')
-    } else {
+    }
+
+    if (currentTemp >= 12 && currentTemp <= 19) {
       body.classList.add('medium')
     }
+
+    if (currentTemp < 12) {
+      body.classList.add('cold')
+    }
+
   }
 
   const showTemperature = (data) => {

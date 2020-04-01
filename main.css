@@ -11,6 +11,10 @@ body {
   width: 30%;
 }
 
+.hot {
+  background-color: darkorange;
+}
+
 .warm {
   background-color: salmon;
 }
