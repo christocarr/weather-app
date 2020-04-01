@@ -1,7 +1,7 @@
 (function() {
 
-  const celsiusPara = document.getElementById('celsiusPara')
-  const fahrenheitPara = document.getElementById('fahrenheitPara')
+  const celsiusMinPara = document.getElementById('celsiusMinPara')
+  const fahrenheitMinPara = document.getElementById('fahrenheitMinPara')
 
   //get devices current location
   if (!navigator.geolocation) {
@@ -20,11 +20,14 @@
     }
 
     getData(lat, long).then(data => {
-      const celsius = data.main.temp
-      const fahrenheit = ((celsius * 9) / 5) + 32
 
-      celsiusPara.innerHTML = `${celsius} &deg;C`;
-      fahrenheitPara.innerHTML = `${fahrenheit} &deg;F`;
+      console.log(data)
+
+      const celsiusMin = Math.round(data.main.temp_min)
+      const fahrenheitMin = Math.round(((celsiusMin * 9) / 5) + 32)
+
+      celsiusMinPara.innerHTML = `Min ${celsiusMin}&deg;C`;
+      fahrenheitMinPara.innerHTML = `Min ${fahrenheitMin}&deg;F`;
     })
   }
   
