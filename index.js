@@ -3,6 +3,7 @@
   const fahrenheitMinPara = document.getElementById('fahrenheitMinPara');
   const celsiusMaxPara = document.getElementById('celsiusMaxPara');
   const fahrenheitMaxPara = document.getElementById('fahrenheitMaxPara');
+  const body = document.querySelector('body')
 
   //get devices current location
   if (!navigator.geolocation) {
@@ -21,7 +22,8 @@
     }
 
     getData(lat, long).then(data => {
-      console.log(data);
+      
+      renderBody(data)
 
       const celsiusMin = Math.round(data.main.temp_min);
       const fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
@@ -36,4 +38,15 @@
       fahrenheitMaxPara.innerHTML = `Max ${fahrenheitMax}&deg;F`;
     });
   }
+
+  const renderBody = (data) => {
+    if (data.main.temp > 25) {
+      body.classList.add('warm')
+    } else if (data.main.temp < 15) {
+      body.classList.add('cold')
+    } else {
+      body.classList.add('medium')
+    }
+  }
+
 })();

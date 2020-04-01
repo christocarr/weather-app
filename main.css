@@ -7,4 +7,18 @@ body {
 
 .temperature-group {
   display: flex;
+  justify-content: space-evenly;
+  width: 30%;
+}
+
+.warm {
+  background-color: salmon;
+}
+
+.medium {
+  background-color: lightsalmon;
+}
+
+.cold {
+  background-color: lightblue;
 }
