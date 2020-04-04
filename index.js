@@ -1,8 +1,8 @@
 (function() {
   const celsiusMinPara = document.getElementById('celsiusMinPara');
-  const fahrenheitMinPara = document.getElementById('fahrenheitMinPara');
+  // const fahrenheitMinPara = document.getElementById('fahrenheitMinPara');
   const celsiusMaxPara = document.getElementById('celsiusMaxPara');
-  const fahrenheitMaxPara = document.getElementById('fahrenheitMaxPara');
+  // const fahrenheitMaxPara = document.getElementById('fahrenheitMaxPara');
   const body = document.querySelector('body')
 
   //get devices current location
@@ -53,16 +53,16 @@
 
   const showTemperature = (data) => {
     const celsiusMin = Math.round(data.main.temp_min);
-    const fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
+    // const fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
 
     const celsiusMax = Math.round(data.main.temp_max);
-    const fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32)
+    // const fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32)
 
-    celsiusMinPara.innerHTML = `Min ${celsiusMin}&deg;C`;
-    fahrenheitMinPara.innerHTML = `Min ${fahrenheitMin}&deg;F`;
+    celsiusMinPara.innerHTML = `${celsiusMin}&deg;C`;
+    // fahrenheitMinPara.innerHTML = `${fahrenheitMin}&deg;F`;
 
-    celsiusMaxPara.innerHTML = `Max ${celsiusMax}&deg;C`;
-    fahrenheitMaxPara.innerHTML = `Max ${fahrenheitMax}&deg;F`;
+    celsiusMaxPara.innerHTML = `${celsiusMax}&deg;C`;
+    // fahrenheitMaxPara.innerHTML = `${fahrenheitMax}&deg;F`;
   }
 
 })();
