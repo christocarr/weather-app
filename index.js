@@ -1,9 +1,7 @@
-(function() {
-  const celsiusMinPara = document.getElementById('celsiusMinPara');
-  // const fahrenheitMinPara = document.getElementById('fahrenheitMinPara');
-  const celsiusMaxPara = document.getElementById('celsiusMaxPara');
-  // const fahrenheitMaxPara = document.getElementById('fahrenheitMaxPara');
-  const body = document.querySelector('body')
+(function () {
+  const minTemperaturePara = document.getElementById('minTemperaturePara');
+  const maxTemperaturePara = document.getElementById('maxTemperaturePara');
+  const body = document.querySelector('body');
 
   //get devices current location
   if (!navigator.geolocation) {
@@ -21,48 +19,47 @@
       return await response.json();
     }
 
-    getData(lat, long).then(data => {
-      
-      showBodyColor(data)
-      showTemperature(data)
-
+    getData(lat, long).then((data) => {
+      showBodyColor(data);
+      showTemperature(data);
     });
   }
 
   const showBodyColor = (data) => {
-
-    const currentTemp = data.main.temp
+    const currentTemp = data.main.temp;
 
     if (currentTemp > 28) {
-      body.classList.add('hot')
+      body.classList.add('hot');
     }
 
     if (currentTemp > 19 && currentTemp <= 27) {
-      body.classList.add('warm')
+      body.classList.add('warm');
     }
 
     if (currentTemp >= 12 && currentTemp <= 19) {
-      body.classList.add('medium')
+      body.classList.add('medium');
     }
 
     if (currentTemp < 12) {
-      body.classList.add('cold')
+      body.classList.add('cold');
     }
-
-  }
+  };
 
   const showTemperature = (data) => {
-    const celsiusMin = Math.round(data.main.temp_min);
-    // const fahrenheitMin = Math.round((celsiusMin * 9) / 5 + 32);
+    const minTemperature = data.main.temp_min;
+    const maxTemperature = data.main.temp_max;
 
-    const celsiusMax = Math.round(data.main.temp_max);
-    // const fahrenheitMax = Math.round((celsiusMax * 9) / 5 + 32)
-
-    celsiusMinPara.innerHTML = `${celsiusMin}&deg;C`;
-    // fahrenheitMinPara.innerHTML = `${fahrenheitMin}&deg;F`;
-
-    celsiusMaxPara.innerHTML = `${celsiusMax}&deg;C`;
-    // fahrenheitMaxPara.innerHTML = `${fahrenheitMax}&deg;F`;
-  }
-
+    //if location is in US then show fahrenheit
+    if (data.sys.country === 'US') {
+      minTemperaturePara.innerHTML = `${Math.round(
+        (minTemperature * 9) / 5 + 32
+      )}&deg;F`;
+      maxTemperaturePara.innerHTML = `${Math.round(
+        (maxTemperature * 9) / 5 + 32
+      )}&deg;F`;
+    } else {
+      minTemperaturePara.innerHTML = `${Math.round(minTemperature)}&deg;C`;
+      maxTemperaturePara.innerHTML = `${Math.round(maxTemperature)}&deg;C`;
+    }
+  };
 })();
