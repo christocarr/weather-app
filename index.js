@@ -22,6 +22,7 @@
     getData(lat, long).then((data) => {
       showBodyColor(data);
       showTemperature(data);
+      showIcon(data.weather[0].icon)
     });
   }
 
@@ -62,4 +63,11 @@
       maxTemperaturePara.innerHTML = `${Math.round(maxTemperature)}&deg;C`;
     }
   };
+
+  const showIcon = iconCode => {
+    const img = document.createElement('img')
+    img.setAttribute('src', `http://openweathermap.org/img/wn/${iconCode}@2x.png`)
+    body.append(img)
+  }
+  
 })();
