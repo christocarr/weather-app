@@ -68,7 +68,7 @@
   const showIcon = iconCode => {
     const img = document.createElement('img')
     img.setAttribute('src', `http://openweathermap.org/img/wn/${iconCode}@2x.png`)
-    body.append(img)
+    iconWrapper.append(img)
   }
   
 })();
