@@ -1,6 +1,7 @@
 (function () {
   const minTemperaturePara = document.getElementById('minTemperaturePara');
   const maxTemperaturePara = document.getElementById('maxTemperaturePara');
+  const iconWrapper = document.querySelector('.icon-wrapper')
   const body = document.querySelector('body');
 
   //get devices current location
