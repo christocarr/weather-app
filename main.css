@@ -22,6 +22,11 @@ body {
   width: 30%;
 }
 
+.temperature-group h2 {
+  margin-bottom: 0.5rem;
+  font-weight: 100;
+}
+
 .temperature-group p {
   margin: 0;
   font-size: 1.5rem;
