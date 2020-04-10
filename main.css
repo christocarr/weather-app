@@ -6,6 +6,10 @@ body {
   color: white;
 }
 
+.location {
+  font-size: 2rem;
+}
+
 .temperature-wrapper {
   display: flex;
   flex-direction: row;
