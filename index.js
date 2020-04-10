@@ -23,7 +23,7 @@
 
     getData(lat, long).then((data) => {
       showBodyColor(data);
-
+      showLocation(data);
       showTemperature(data);
       showIcon(data.weather[0].icon)
     });
@@ -48,6 +48,12 @@
       body.classList.add('cold');
     }
   };
+
+  const showLocation = (data) => {
+    const locationPara = document.createElement('p');
+    locationPara.innerHTML = `${data.name}`;
+    locationDiv.appendChild(locationPara);
+  }
 
   const showTemperature = (data) => {
     const minTemperature = data.main.temp_min;
