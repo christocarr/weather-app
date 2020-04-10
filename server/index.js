@@ -6,6 +6,8 @@ const fetch = require('node-fetch');
 
 const APIKey = 'aaf81a2a5005fe5f583606e78b54cfd0'
 
+app.use(express.json())
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
