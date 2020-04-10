@@ -3,6 +3,7 @@
   const maxTemperaturePara = document.getElementById('maxTemperaturePara');
   const iconWrapper = document.querySelector('.icon-wrapper')
   const body = document.querySelector('body');
+  const locationDiv = document.querySelector('#locationDiv')
 
   //get devices current location
   if (!navigator.geolocation) {
@@ -22,6 +23,7 @@
 
     getData(lat, long).then((data) => {
       showBodyColor(data);
+
       showTemperature(data);
       showIcon(data.weather[0].icon)
     });
