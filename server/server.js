@@ -7,6 +7,9 @@ const port = process.env.PORT || 3000;
 
 const APIKey = 'aaf81a2a5005fe5f583606e78b54cfd0';
 
+//set static folder
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(express.json());
 
 app.use((req, res, next) => {
