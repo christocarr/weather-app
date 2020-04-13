@@ -21,6 +21,13 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 });
 
+app.get('/:location', async (req, res) => {
+  const location = req.params.location
+  const weatherData = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKey}`)
+  const json = await weatherData.json();
+  res.json(json)
+})
+
 app.get('/:latlong', async (req, res) => {
   const latlong = req.params.latlong.split(',');
   const lat = latlong[0];
