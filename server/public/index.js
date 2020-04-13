@@ -79,5 +79,11 @@
   //   iconWrapper.append(img)
   // }
 
-  console.log('hi')
+    //get users location by using IP address
+    const IPLocation = async () => {
+      const response =  await fetch('http://ip-api.com/json')
+      const data = await response.json()
+      return data.countryCode
+    }
+    IPLocation()
 })();
