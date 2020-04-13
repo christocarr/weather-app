@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.js'))
 });
 
-app.get('/:country/:city', async (req, res) => {
+app.get('/:city/:country', async (req, res) => {
   // res.send(req.params.city)
   const countryCode = 'GB'; // should come from users IP location
   const city = req.params.city; // comes from input that user sends
