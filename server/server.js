@@ -22,9 +22,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:location', async (req, res) => {
-  const location = req.params.location
-  const weatherData = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${APIKey}`)
-  const json = await weatherData.json();
+  const countryCode = 'GB' // should come from users IP location
+  const city = req.params.location // comes from input that user sends
+  const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${APIKey}`)
+  const json = await data.json();
   res.json(json)
 })
 
