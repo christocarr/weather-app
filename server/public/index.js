@@ -88,13 +88,21 @@
       return data.countryCode
     }
 
+    // get weather from server
+    const weatherData = async () => {
+      const countryCode = await IPLocation()
+      const city = 'wembley'
+      const response = await fetch(`http://localhost:3000/${city}/${countryCode}`)
+      return response.json()
+    } 
+
     form.addEventListener('submit', ev => {
       ev.preventDefault()
       const getWeather = async (callback) => {
-        const countryCode = await callback()
-        
+        const weather = await callback()
+        console.log(weather)
       }
-      getWeather(IPLocation)
+      getWeather(weatherData)
     })
     
 
