@@ -8,9 +8,10 @@ const port = process.env.PORT || 3000;
 const APIKey = 'aaf81a2a5005fe5f583606e78b54cfd0';
 
 //set static folder
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -18,17 +19,19 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.get('/:country/:city', async (req, res) => {
   // res.send(req.params.city)
-  const countryCode = 'GB' // should come from users IP location
-  const city = req.params.city // comes from input that user sends
-  const data = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${APIKey}`)
+  const countryCode = 'GB'; // should come from users IP location
+  const city = req.params.city; // comes from input that user sends
+  const data = await fetch(
+    `http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${APIKey}`
+  );
   const json = await data.json();
-  res.json(json)
-})
+  res.json(json);
+});
 
 // app.get('/:latlong', async (req, res) => {
 //   const latlong = req.params.latlong.split(',');
