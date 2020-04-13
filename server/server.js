@@ -18,14 +18,14 @@ app.use((req, res, next) => {
   next();
 });
 
+//send files when app started
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
   res.sendFile(path.join(__dirname, 'public', 'index.js'))
 });
 
 app.get('/:city/:country', async (req, res) => {
-  // res.send(req.params.city)
-  const countryCode = 'GB'; // should come from users IP location
+  const countryCode = 'GB'; //comes from users IP location
   const city = req.params.city; // comes from input that user sends
   const data = await fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${APIKey}`
@@ -33,16 +33,5 @@ app.get('/:city/:country', async (req, res) => {
   const json = await data.json();
   res.json(json);
 });
-
-// app.get('/:latlong', async (req, res) => {
-//   const latlong = req.params.latlong.split(',');
-//   const lat = latlong[0];
-//   const long = latlong[1];
-//   const fetch_res = await fetch(
-//     `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${APIKey}`
-//   );
-//   const json = await fetch_res.json();
-//   res.json(json);
-// });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
