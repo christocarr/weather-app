@@ -79,5 +79,5 @@
   //   iconWrapper.append(img)
   // }
 
-
+  console.log('hi')
 })();
