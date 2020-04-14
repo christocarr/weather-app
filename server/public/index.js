@@ -80,6 +80,7 @@
   // }
 
     const form = document.querySelector('form')
+    const cityInput = document.querySelector('#locationInput')
 
     //get users location by using IP address
     const IPLocation = async () => {
@@ -91,7 +92,7 @@
     // get weather from server
     const weatherData = async () => {
       const countryCode = await IPLocation()
-      const city = 'wembley'
+      const city = cityInput.value.toLowerCase()
       const response = await fetch(`http://localhost:3000/${city}/${countryCode}`)
       return response.json()
     } 
