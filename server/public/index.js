@@ -106,13 +106,13 @@
       ev.preventDefault()
       const getWeather = async (callback) => {
         const returnedData = await callback()
-        showWeather(returnedData)
+        showTemperature(returnedData)
       }
       getWeather(weatherData)
 
     })
     
-    const showWeather = (data) => {
+    const showTemperature = (data) => {
       
       const minTemperature = data.main.temp_min;
       const maxTemperature = data.main.temp_max;
