@@ -51,6 +51,7 @@
 
   const form = document.querySelector('form');
   const cityInput = document.querySelector('#locationInput');
+  const inputErrWrapper = document.querySelector('#inputErrWrapper')
   const minTemperaturePara = document.getElementById('minTemperaturePara');
   const maxTemperaturePara = document.getElementById('maxTemperaturePara');
   const iconWrapper = document.querySelector('.icon-wrapper');
@@ -89,7 +90,7 @@
         showTemperature(returnedData);
         showIcon(returnedData.weather[0].icon);
       } else {
-        console.log('Please enter a city');
+        inputErrWrapper.textContent = `Please enter a valid city.`
       }
     };
     getWeather(weatherData);

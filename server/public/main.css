@@ -11,6 +11,11 @@ form {
   flex-direction: column;
 }
 
+form p {
+  margin: 0.5rem;
+  height: 1rem;
+}
+
 .location {
   font-size: 2rem;
 }
