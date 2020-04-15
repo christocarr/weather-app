@@ -49,64 +49,77 @@
   //   }
   // };
 
-    const form = document.querySelector('form')
-    const cityInput = document.querySelector('#locationInput')
-    const minTemperaturePara = document.getElementById('minTemperaturePara');
-    const maxTemperaturePara = document.getElementById('maxTemperaturePara');
-    const iconWrapper = document.querySelector('.icon-wrapper')
-    const body = document.querySelector('body');
-    const locationDiv = document.querySelector('#locationDiv')
+  const form = document.querySelector('form');
+  const cityInput = document.querySelector('#locationInput');
+  const minTemperaturePara = document.getElementById('minTemperaturePara');
+  const maxTemperaturePara = document.getElementById('maxTemperaturePara');
+  const iconWrapper = document.querySelector('.icon-wrapper');
+  const body = document.querySelector('body');
+  const locationDiv = document.querySelector('#locationDiv');
 
-    //get users location by using IP address
-    const IPLocation = async () => {
-      const response =  await fetch('http://ip-api.com/json')
-      const data = await response.json()
-      return data.countryCode
+  //get users location by using IP address
+  const IPLocation = async () => {
+    const response = await fetch('http://ip-api.com/json');
+    const data = await response.json();
+    return data.countryCode;
+  };
+
+  // get weather from server
+  const weatherData = async () => {
+    // validate user input
+    if (cityInput.value === '') {
+      return false;
     }
+    const countryCode = await IPLocation();
+    const city = cityInput.value.toLowerCase();
+    const response = await fetch(
+      `http://localhost:3000/${city}/${countryCode}`
+    );
+    if (response.status === '404') {
+      console.log('not found');
+    }
+    return response.json();
+  };
 
-    // get weather from server
-    const weatherData = async () => {
-      const countryCode = await IPLocation()
-      const city = cityInput.value.toLowerCase()
-      const response = await fetch(`http://localhost:3000/${city}/${countryCode}`)
-      return response.json()
-    } 
-
-    form.addEventListener('submit', ev => {
-      ev.preventDefault()
-      const getWeather = async (callback) => {
-        const returnedData = await callback()
-        console.log(returnedData)
-        showTemperature(returnedData)
-        showIcon(returnedData.weather[0].icon)
-      }
-      getWeather(weatherData)
-
-    })
-    
-    const showTemperature = (data) => {
-      
-      const minTemperature = data.main.temp_min;
-      const maxTemperature = data.main.temp_max;
-
-      //if location is in US then show fahrenheit
-      if (data.sys.country === 'US') {
-        minTemperaturePara.innerHTML = `${Math.round(
-          (minTemperature * 9) / 5 + 32
-        )}&deg;F`;
-        maxTemperaturePara.innerHTML = `${Math.round(
-          (maxTemperature * 9) / 5 + 32
-        )}&deg;F`;
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const getWeather = async (callback) => {
+      const returnedData = await callback();
+      if (returnedData) {
+        showTemperature(returnedData);
+        showIcon(returnedData.weather[0].icon);
       } else {
-        minTemperaturePara.innerHTML = `${Math.round(minTemperature)}&deg;C`;
-        maxTemperaturePara.innerHTML = `${Math.round(maxTemperature)}&deg;C`;
+        console.log('Please enter a city');
       }
-    }
+    };
+    getWeather(weatherData);
+  });
 
-    const showIcon = iconCode => {
-      const img = document.createElement('img')
-      img.setAttribute('src', `http://openweathermap.org/img/wn/${iconCode}@2x.png`)
-      iconWrapper.innerHTML = ''
-      iconWrapper.appendChild(img)
+  const showTemperature = (data) => {
+    const minTemperature = data.main.temp_min;
+    const maxTemperature = data.main.temp_max;
+
+    //if location is in US then show fahrenheit
+    if (data.sys.country === 'US') {
+      minTemperaturePara.innerHTML = `${Math.round(
+        (minTemperature * 9) / 5 + 32
+      )}&deg;F`;
+      maxTemperaturePara.innerHTML = `${Math.round(
+        (maxTemperature * 9) / 5 + 32
+      )}&deg;F`;
+    } else {
+      minTemperaturePara.innerHTML = `${Math.round(minTemperature)}&deg;C`;
+      maxTemperaturePara.innerHTML = `${Math.round(maxTemperature)}&deg;C`;
     }
+  };
+
+  const showIcon = (iconCode) => {
+    const img = document.createElement('img');
+    img.setAttribute(
+      'src',
+      `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+    );
+    iconWrapper.innerHTML = '';
+    iconWrapper.appendChild(img);
+  };
 })();
