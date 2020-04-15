@@ -83,6 +83,7 @@
   };
 
   form.addEventListener('submit', (ev) => {
+    inputErrWrapper.textContent = ''
     ev.preventDefault();
     const getWeather = async (callback) => {
       const returnedData = await callback();
