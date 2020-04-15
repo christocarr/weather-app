@@ -49,12 +49,6 @@
   //   }
   // };
 
-  // const showLocation = (data) => {
-  //   const locationPara = document.createElement('p');
-  //   locationPara.innerHTML = `${data.name}`;
-  //   locationDiv.appendChild(locationPara);
-  // }
-
     const form = document.querySelector('form')
     const cityInput = document.querySelector('#locationInput')
     const minTemperaturePara = document.getElementById('minTemperaturePara');
