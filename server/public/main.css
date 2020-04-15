@@ -41,6 +41,11 @@ form {
   font-size: 1.8rem;
 }
 
+.icon-wrapper {
+  height: 100px;
+  width: 100px;
+}
+
 .hot {
   background-color: darkorange;
 }
