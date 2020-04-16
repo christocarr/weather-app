@@ -121,6 +121,10 @@
 
   const showIcon = (iconCode) => {
     const img = document.createElement('img');
+
+    // add fade in class to icon
+    img.classList.add('fade-in');
+    
     img.setAttribute(
       'src',
       `http://openweathermap.org/img/wn/${iconCode}@2x.png`
