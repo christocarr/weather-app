@@ -8,6 +8,10 @@ body {
   text-align: center;
 }
 
+h1, h2 {
+  font-weight: 600;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -21,9 +25,15 @@ form p {
 
 form input {
   border: 0;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #b1b1b1;
   padding: 0.5rem;
   text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+form input::placeholder, form input {
+  font-size: 1rem;
 }
 
 form label {
