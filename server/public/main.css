@@ -24,6 +24,10 @@ form input {
   text-align: center;
 }
 
+form label {
+  display: none;
+}
+
 .location {
   font-size: 2rem;
 }
