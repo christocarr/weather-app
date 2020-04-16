@@ -58,6 +58,19 @@ form label {
   font-size: 1.8rem;
 }
 
+.fade-in {
+  animation: fadeIn ease 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .icon-wrapper {
   height: 100px;
   width: 100px;

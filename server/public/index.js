@@ -51,7 +51,7 @@
 
   const form = document.querySelector('form');
   const cityInput = document.querySelector('#locationInput');
-  const inputErrWrapper = document.querySelector('#inputErrWrapper')
+  const inputErrWrapper = document.querySelector('#inputErrWrapper');
   const minTemperaturePara = document.getElementById('minTemperaturePara');
   const maxTemperaturePara = document.getElementById('maxTemperaturePara');
   const iconWrapper = document.querySelector('.icon-wrapper');
@@ -83,7 +83,7 @@
   };
 
   form.addEventListener('submit', (ev) => {
-    inputErrWrapper.textContent = ''
+    inputErrWrapper.textContent = '';
     ev.preventDefault();
     const getWeather = async (callback) => {
       const returnedData = await callback();
@@ -91,7 +91,7 @@
         showTemperature(returnedData);
         showIcon(returnedData.weather[0].icon);
       } else {
-        inputErrWrapper.textContent = `Please enter a valid city.`
+        inputErrWrapper.textContent = `Please enter a valid city.`;
       }
     };
     getWeather(weatherData);
@@ -100,6 +100,10 @@
   const showTemperature = (data) => {
     const minTemperature = data.main.temp_min;
     const maxTemperature = data.main.temp_max;
+
+    //add fade in class to element
+    minTemperaturePara.classList.add('fade-in');
+    maxTemperaturePara.classList.add('fade-in');
 
     //if location is in US then show fahrenheit
     if (data.sys.country === 'US') {
