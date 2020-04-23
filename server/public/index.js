@@ -71,14 +71,14 @@
     if (cityInput.value === '') {
       return false;
     }
+    if (parseInt(cityInput.value) === typeof(Number)) {
+      return false;
+    }
     const countryCode = await IPLocation();
     const city = cityInput.value.toLowerCase();
     const response = await fetch(
       `http://localhost:3000/${city}/${countryCode}`
     );
-    if (response.status === '404') {
-      console.log('not found');
-    }
     return response.json();
   };
 
@@ -87,11 +87,11 @@
     ev.preventDefault();
     const getWeather = async (callback) => {
       const returnedData = await callback();
-      if (returnedData) {
+      if (returnedData.cod === '404') {
+        inputErrWrapper.textContent = `Please enter a valid city.`
+      } else {
         showTemperature(returnedData);
         showIcon(returnedData.weather[0].icon);
-      } else {
-        inputErrWrapper.textContent = `Please enter a valid city.`;
       }
     };
     getWeather(weatherData);
