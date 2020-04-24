@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:city/:country', async (req, res) => {
-  const countryCode = 'GB'; //comes from users IP location
+  const countryCode = req.params.country; //comes from users IP location
   const city = req.params.city; // comes from input that user sends
   const data = await fetch(
     `http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${APIKey}&units=metric`

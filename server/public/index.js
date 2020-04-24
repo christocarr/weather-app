@@ -1,62 +1,10 @@
 (function () {
-  // const minTemperaturePara = document.getElementById('minTemperaturePara');
-  // const maxTemperaturePara = document.getElementById('maxTemperaturePara');
-  // const iconWrapper = document.querySelector('.icon-wrapper')
-  // const body = document.querySelector('body');
-  // const locationDiv = document.querySelector('#locationDiv')
-
-  // //get devices current location
-  // if (!navigator.geolocation) {
-  //   return `Geolocation is not supported by your browser.`;
-  // } else {
-  //   navigator.geolocation.getCurrentPosition(sendLocation);
-  // }
-
-  // function sendLocation(position) {
-  //   const lat = position.coords.latitude;
-  //   const long = position.coords.longitude;
-
-  //   async function getData(lat, long) {
-  //     const response = await fetch(`http://localhost:3000/${lat},${long}`);
-  //     return await response.json();
-  //   }
-
-  //   getData(lat, long).then((data) => {
-  //     showBodyColor(data);
-  //     showLocation(data);
-  //     showTemperature(data);
-  //     showIcon(data.weather[0].icon)
-  //   });
-  // }
-
-  // const showBodyColor = (data) => {
-  //   const currentTemp = data.main.temp;
-
-  //   if (currentTemp > 28) {
-  //     body.classList.add('hot');
-  //   }
-
-  //   if (currentTemp > 19 && currentTemp <= 27) {
-  //     body.classList.add('warm');
-  //   }
-
-  //   if (currentTemp >= 12 && currentTemp <= 19) {
-  //     body.classList.add('medium');
-  //   }
-
-  //   if (currentTemp < 12) {
-  //     body.classList.add('cold');
-  //   }
-  // };
-
   const form = document.querySelector('form');
   const cityInput = document.querySelector('#locationInput');
   const inputErrWrapper = document.querySelector('#inputErrWrapper');
   const minTemperaturePara = document.getElementById('minTemperaturePara');
   const maxTemperaturePara = document.getElementById('maxTemperaturePara');
   const iconWrapper = document.querySelector('.icon-wrapper');
-  const body = document.querySelector('body');
-  const locationDiv = document.querySelector('#locationDiv');
 
   //get users location by using IP address
   const IPLocation = async () => {
