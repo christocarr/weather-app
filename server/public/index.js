@@ -25,7 +25,7 @@
     const countryCode = await IPLocation();
     const city = cityInput.value.toLowerCase();
     const response = await fetch(
-      `http://localhost:3000/${city}/${countryCode}`
+      `http://178.62.108.238//${city}/${countryCode}`
     );
     return response.json();
   };
