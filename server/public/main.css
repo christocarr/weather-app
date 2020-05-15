@@ -90,5 +90,19 @@ form label {
 
 footer {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
+  width: 100vw;
+  padding-bottom: 1rem;
+}
+
+footer p {
+  width: 50%;
+}
+
+footer img {
+  width: 20%;
 }
