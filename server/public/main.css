@@ -42,6 +42,10 @@ form label {
   display: none;
 }
 
+form button:hover {
+  cursor: pointer;
+}
+
 #inputErrWrapper {
   color: red;
   font-size: 0.9rem;
