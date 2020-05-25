@@ -8,9 +8,11 @@
 
   //get users location by using IP address
   const IPLocation = async () => {
+    const coordArr = []
     const response = await fetch('http://ip-api.com/json');
     const data = await response.json();
-    return data.countryCode;
+    coordArr.push(data.lat, data.lon)
+    return coordArr;
   };
 
   // get weather from server
@@ -22,10 +24,9 @@
     if (parseInt(cityInput.value) === typeof(Number)) {
       return false;
     }
-    const countryCode = await IPLocation();
-    const city = cityInput.value.toLowerCase();
+    const coordinates = await IPLocation();
     const response = await fetch(
-      `http://178.62.108.238/${city}/${countryCode}`
+      `http://localhost:3000/${coordinates}`
     );
     return response.json();
   };
