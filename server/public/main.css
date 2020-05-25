@@ -54,28 +54,20 @@ form button:hover {
   margin: 0;
 }
 
-.temperature-wrapper {
+.current-temp-wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 60%;
 }
 
-.temperature-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-}
-
-.temperature-group h2 {
+.current-temp-wrapper h2 {
   margin-bottom: 0.5rem;
   font-weight: 100;
 }
 
-.temperature-group p {
+.current-temp-wrapper p {
   margin: 0;
   font-size: 1.8rem;
 }
