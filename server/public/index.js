@@ -39,7 +39,8 @@
         inputErrWrapper.textContent = `Please enter a valid city.`;
       } else {
         showTemperature(returnedData);
-        showIcon(returnedData.weather[0].icon);
+        console.log(returnedData)
+        showIcon(returnedData.current.weather[0].icon);
       }
     };
     getWeather(weatherData);
