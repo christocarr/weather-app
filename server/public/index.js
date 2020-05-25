@@ -56,7 +56,8 @@
     }
     const hoursArr = unixTimeArr.map((unixTime) => {
       const date = new Date(unixTime * 1000)
-      return date.getHours()
+      const hour = date.getHours().toString()
+      return `${hour}:00`
     })
 
     console.log(hoursArr)
