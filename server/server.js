@@ -28,10 +28,9 @@ app.get('/:coordinates', async (req, res) => {
   const coordinates = req.params.coordinates; //comes from users IP location
   const coordinatesArr = coordinates.split(',')
   const data = await fetch(
-    `http://api.openweathermap.org/data/2.5/onecall?lat=${coordinatesArr[0]}&lon=${coordinatesArr[1]}&appid=${APIKey}&units=metric`
+    `http://api.openweathermap.org/data/2.5/onecall?lat=${coordinatesArr[0]}&lon=${coordinatesArr[1]}&exclude={minutely,daily}&appid=${APIKey}&units=metric`
   );
   const json = await data.json();
-  console.log(json)
   res.json(json);
   
 });
