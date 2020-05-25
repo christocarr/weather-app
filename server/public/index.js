@@ -47,6 +47,20 @@
   });
 
   const showTemperature = (data) => {
+
+    //get time of forcasted data from data.hourly.dt
+    const hourlyArr = data.hourly
+    const unixTimeArr = []
+    for (let i = 1; i < 18; i ++) { //need less than what the api returns
+      unixTimeArr.push(hourlyArr[i].dt)
+    }
+    const hoursArr = unixTimeArr.map((unixTime) => {
+      const date = new Date(unixTime * 1000)
+      return date.getHours()
+    })
+
+    console.log(hoursArr)
+
     const currentTemp = data.current.temp;
     currentTempPara.classList.add('fade-in');
 
