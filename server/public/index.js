@@ -29,7 +29,8 @@
     const coordinates = await IPLocation();
     const lat = coordinates[0]
     const lon = coordinates[1]
-    const response = await fetch(`http://178.62.108.238/${lat},${lon}`);
+    const windowLocation = window.location;
+    const response = await fetch(`${windowLocation.origin}/${lat},${lon}`);
     return response.json();
   };
 
