@@ -62,7 +62,7 @@ form button:hover {
   width: 60%;
 }
 
-.current-temp-wrapper h2 {
+.current-temp-wrapper h2, .hourly-forcast-heading {
   margin-bottom: 0.5rem;
   font-weight: 100;
 }
@@ -75,7 +75,6 @@ form button:hover {
 .hourly-forcast-wrapper {
   width: 90vw;
   height: 100px;
-  display: flex;
   white-space: nowrap;
   overflow-x: scroll;
 }
