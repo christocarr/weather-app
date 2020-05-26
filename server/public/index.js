@@ -27,10 +27,8 @@
       return false;
     }
     const coordinates = await IPLocation();
-    const lat = coordinates[0]
-    const lon = coordinates[1]
     const windowLocation = window.location;
-    const response = await fetch(`${windowLocation.origin}/${lat},${lon}`);
+    const response = await fetch(`${windowLocation.origin}/${coordinates}`);
     return response.json();
   };
 
