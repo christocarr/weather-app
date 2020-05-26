@@ -27,7 +27,7 @@
       return false;
     }
     const coordinates = await IPLocation();
-    const response = await fetch(`http://localhost:3000/${coordinates}`);
+    const response = await fetch(`http://178.62.108.238/${coordinates}`);
     return response.json();
   };
 
