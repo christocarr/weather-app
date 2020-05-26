@@ -75,12 +75,12 @@
     });
 
     //for each hourly temp create a div and display time and temperature
-    for (let i = 1; i < 18; i++) {
+    for (let i = 1; i < hoursArr.length; i++) {
       const hourlyTempDiv = document.createElement('div');
       const time = document.createElement('p');
       const temp = document.createElement('p');
       time.textContent = hoursArr[i];
-      temp.textContent = data.hourly[i].temp;
+      temp.innerHTML = `${Math.round(data.hourly[i].temp)}&deg;C`;
       hourlyTempDiv.appendChild(time);
       hourlyTempDiv.appendChild(temp);
       hourlyForcastWrapper.appendChild(hourlyTempDiv);
