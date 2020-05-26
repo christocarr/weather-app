@@ -3,8 +3,6 @@
   const cityInput = document.querySelector('#locationInput');
   const inputErrWrapper = document.querySelector('#inputErrWrapper');
   const currentTempPara = document.getElementById('currentTemp');
-  // const minTemperaturePara = document.getElementById('minTemperaturePara');
-  // const maxTemperaturePara = document.getElementById('maxTemperaturePara');
   const iconWrapper = document.querySelector('.icon-wrapper');
   const hourlyForcastWrapper = document.querySelector('.hourly-forcast-wrapper')
 
@@ -48,27 +46,28 @@
 
   const showTemperature = (data) => {
 
-    //get time of forcasted data from data.hourly.dt
-    const hourlyArr = data.hourly
-    const unixTimeArr = []
-    for (let i = 1; i < 18; i ++) { //need less than what the api returns
-      unixTimeArr.push(hourlyArr[i].dt)
-    }
-    const hoursArr = unixTimeArr.map((unixTime) => {
-      const date = new Date(unixTime * 1000)
-      const hour = date.getHours().toString()
-      return `${hour}:00`
-    })
-
     const currentTemp = data.current.temp;
     currentTempPara.classList.add('fade-in');
 
     //if location is in US then show fahrenheit
     if (data.timezone.includes('America')) {
       currentTempPara.innerHTML = `${Math.round((currentTemp * 9) / 5 + 32)}&deg;F`
-    } else {
+    } else { // else show celcius
       currentTempPara.innerHTML = `${Math.round(currentTemp)}&deg;C`
     }
+
+    //get time of forcasted data from data.hourly.dt
+    const hourlyArr = data.hourly
+    const unixTimeArr = []
+    for (let i = 1; i < 18; i ++) { //need less than what the api returns
+      unixTimeArr.push(hourlyArr[i].dt)
+    }
+    // create array of 24 hour format of hourly times
+    const hoursArr = unixTimeArr.map((unixTime) => {
+      const date = new Date(unixTime * 1000)
+      const hour = date.getHours().toString()
+      return `${hour}:00`
+    })
   };
 
   const showIcon = (iconCode) => {
