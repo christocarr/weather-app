@@ -63,7 +63,7 @@ form button:hover {
 }
 
 .current-temp-wrapper h2, .hourly-forcast-heading {
-  margin-bottom: 0.5rem;
+  margin: 0 0 1rem 0;
   font-weight: 100;
 }
 
@@ -82,6 +82,10 @@ form button:hover {
 .hourly-forcast-wrapper div {
   display: inline-block;
   margin: 0 0.5rem;
+}
+
+.hourly-forcast-wrapper p {
+  margin-top: 0;
 }
 
 .hourly-forcast-wrapper div img {
