@@ -4,8 +4,8 @@
   const inputErrWrapper = document.querySelector('#inputErrWrapper');
   const currentTempPara = document.getElementById('currentTemp');
   const iconWrapper = document.querySelector('.icon-wrapper');
-  const hourlyForcastWrapper = document.querySelector(
-    '.hourly-forcast-wrapper'
+  const hourlyForecastWrapper = document.querySelector(
+    '.hourly-forecast-wrapper'
   );
 
   //get users location by using IP address
@@ -56,11 +56,11 @@
         (currentTemp * 9) / 5 + 32
       )}&deg;F`;
     } else {
-      // else show celcius
+      // else show celsius
       currentTempPara.innerHTML = `${Math.round(currentTemp)}&deg;C`;
     }
 
-    //get time of forcasted data from data.hourly.dt
+    //get time of forecasted data from data.hourly.dt
     const hourlyArr = data.hourly;
     const unixTimeArr = [];
     for (let i = 1; i < 18; i++) {
@@ -76,18 +76,21 @@
 
     //for each hourly temp create a div and display time, temperature and icon
     for (let i = 1; i < hoursArr.length; i++) {
-      console.log(data.hourly[i])
+      console.log(data.hourly[i]);
       const hourlyTempDiv = document.createElement('div');
       const time = document.createElement('p');
       const temp = document.createElement('p');
-      const img = document.createElement('img')
+      const img = document.createElement('img');
       time.textContent = hoursArr[i];
       temp.innerHTML = `${Math.round(data.hourly[i].temp)}&deg;C`;
-      img.setAttribute('src', `http://openweathermap.org/img/wn/${data.hourly[i].weather[0].icon}@2x.png`)
+      img.setAttribute(
+        'src',
+        `http://openweathermap.org/img/wn/${data.hourly[i].weather[0].icon}@2x.png`
+      );
       hourlyTempDiv.appendChild(time);
       hourlyTempDiv.appendChild(temp);
-      hourlyTempDiv.appendChild(img)
-      hourlyForcastWrapper.appendChild(hourlyTempDiv);
+      hourlyTempDiv.appendChild(img);
+      hourlyForecastWrapper.appendChild(hourlyTempDiv);
     }
   };
 
