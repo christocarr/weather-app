@@ -72,6 +72,19 @@ form button:hover {
   font-size: 1.8rem;
 }
 
+.hourly-forcast-wrapper {
+  width: 90vw;
+  height: 100px;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.hourly-forcast-wrapper div {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
 .fade-in {
   animation: fadeIn ease 2s;
 }
