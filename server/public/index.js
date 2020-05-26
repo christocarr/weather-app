@@ -6,6 +6,7 @@
   // const minTemperaturePara = document.getElementById('minTemperaturePara');
   // const maxTemperaturePara = document.getElementById('maxTemperaturePara');
   const iconWrapper = document.querySelector('.icon-wrapper');
+  const hourlyForcastWrapper = document.querySelector('.hourly-forcast-wrapper')
 
   //get users location by using IP address
   const IPLocation = async () => {
@@ -39,7 +40,6 @@
         inputErrWrapper.textContent = `Please enter a valid city.`;
       } else {
         showTemperature(returnedData);
-        console.log(returnedData)
         showIcon(returnedData.current.weather[0].icon);
       }
     };
@@ -59,8 +59,6 @@
       const hour = date.getHours().toString()
       return `${hour}:00`
     })
-
-    console.log(hoursArr)
 
     const currentTemp = data.current.temp;
     currentTempPara.classList.add('fade-in');
