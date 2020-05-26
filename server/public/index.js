@@ -74,15 +74,19 @@
       return `${hour}:00`;
     });
 
-    //for each hourly temp create a div and display time and temperature
+    //for each hourly temp create a div and display time, temperature and icon
     for (let i = 1; i < hoursArr.length; i++) {
+      console.log(data.hourly[i])
       const hourlyTempDiv = document.createElement('div');
       const time = document.createElement('p');
       const temp = document.createElement('p');
+      const img = document.createElement('img')
       time.textContent = hoursArr[i];
       temp.innerHTML = `${Math.round(data.hourly[i].temp)}&deg;C`;
+      img.setAttribute('src', `http://openweathermap.org/img/wn/${data.hourly[i].weather[0].icon}@2x.png`)
       hourlyTempDiv.appendChild(time);
       hourlyTempDiv.appendChild(temp);
+      hourlyTempDiv.appendChild(img)
       hourlyForcastWrapper.appendChild(hourlyTempDiv);
     }
   };

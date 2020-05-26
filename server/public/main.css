@@ -74,7 +74,7 @@ form button:hover {
 
 .hourly-forcast-wrapper {
   width: 90vw;
-  height: 100px;
+  height: 150px;
   white-space: nowrap;
   overflow-x: scroll;
 }
