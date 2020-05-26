@@ -62,7 +62,7 @@ form button:hover {
   width: 60%;
 }
 
-.current-temp-wrapper h2, .hourly-forcast-heading {
+.current-temp-wrapper h2, .hourly-forecast-heading {
   margin: 0 0 1rem 0;
   font-weight: 100;
 }
@@ -72,23 +72,23 @@ form button:hover {
   font-size: 1.8rem;
 }
 
-.hourly-forcast-wrapper {
+.hourly-forecast-wrapper {
   width: 90vw;
   height: 150px;
   white-space: nowrap;
   overflow-x: scroll;
 }
 
-.hourly-forcast-wrapper div {
+.hourly-forecast-wrapper div {
   display: inline-block;
   margin: 0 0.5rem;
 }
 
-.hourly-forcast-wrapper p {
+.hourly-forecast-wrapper p {
   margin-top: 0;
 }
 
-.hourly-forcast-wrapper div img {
+.hourly-forecast-wrapper div img {
   width: 50px;
 }
 

@@ -27,7 +27,7 @@
       return false;
     }
     const coordinates = await IPLocation();
-    const response = await fetch(`http://178.62.108.238/${coordinates}`);
+    const response = await fetch(`http://localhost:3000/${coordinates}`);
     return response.json();
   };
 
@@ -76,7 +76,6 @@
 
     //for each hourly temp create a div and display time, temperature and icon
     for (let i = 1; i < hoursArr.length; i++) {
-      console.log(data.hourly[i]);
       const hourlyTempDiv = document.createElement('div');
       const time = document.createElement('p');
       const temp = document.createElement('p');
