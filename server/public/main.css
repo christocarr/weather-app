@@ -43,6 +43,10 @@ form label {
   display: none;
 }
 
+form button {
+  padding: 0.5rem;
+}
+
 form button:hover {
   cursor: pointer;
 }
