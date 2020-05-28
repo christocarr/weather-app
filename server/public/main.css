@@ -139,3 +139,22 @@ footer p {
 footer img {
   width: 10rem;
 }
+
+@media only screen and (min-width: 1024px) {
+  main {
+    width:60%;
+    margin: auto;
+  }
+
+  .hourly-forecast-wrapper {
+    width: 90%;
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  main {
+    width:50%;
+    margin: auto;
+  }
+}
