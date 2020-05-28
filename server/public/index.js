@@ -40,6 +40,7 @@
       if (returnedData.cod === '404') {
         inputErrWrapper.textContent = `Please enter a valid city.`;
       } else {
+        console.log(returnedData)
         showTemperature(returnedData);
         showIcon(returnedData.current.weather[0].icon);
       }

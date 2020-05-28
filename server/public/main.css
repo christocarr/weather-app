@@ -73,7 +73,7 @@ form button:hover {
   margin-top: 1rem;
 }
 
-.current-temp-wrapper h2, .hourly-forecast-heading {
+.current-temp-wrapper h2, .hourly-forecast-heading, .daily-forecast-heading {
   margin: 0 0 1rem 0;
   font-weight: 100;
 }
@@ -83,24 +83,24 @@ form button:hover {
   font-size: 1.8rem;
 }
 
-.hourly-forecast-wrapper {
+.hourly-forecast-wrapper, .daily-forecast-wrapper {
   width: 90vw;
-  height: 150px;
+  min-height: 150px;
   white-space: nowrap;
   overflow-x: scroll;
-  margin: auto;
+  margin: 0 auto 1rem auto;
 }
 
-.hourly-forecast-wrapper div {
+.hourly-forecast-wrapper div, .daily-forecast-wrapper div {
   display: inline-block;
   margin: 0 0.5rem;
 }
 
-.hourly-forecast-wrapper p {
+.hourly-forecast-wrapper p, .daily-forecast-wrapper p {
   margin-top: 0;
 }
 
-.hourly-forecast-wrapper div img {
+.hourly-forecast-wrapper div img, .daily-forecast-wrapper div img {
   width: 50px;
 }
 
@@ -146,7 +146,7 @@ footer img {
     margin: auto;
   }
 
-  .hourly-forecast-wrapper {
+  .hourly-forecast-wrapper, .daily-forecast-wrapper {
     width: 90%;
   }
 }
