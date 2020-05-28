@@ -81,6 +81,8 @@
       const time = document.createElement('p');
       const temp = document.createElement('p');
       const img = document.createElement('img');
+      //add fadeIn animation to hourly forecast
+      hourlyTempDiv.classList.add('fade-in')
       time.textContent = hoursArr[i];
       temp.innerHTML = `${Math.round(data.hourly[i].temp)}&deg;C`;
       img.setAttribute(
@@ -90,6 +92,7 @@
       hourlyTempDiv.appendChild(time);
       hourlyTempDiv.appendChild(temp);
       hourlyTempDiv.appendChild(img);
+
       hourlyForecastWrapper.appendChild(hourlyTempDiv);
     }
   };
