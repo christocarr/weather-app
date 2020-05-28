@@ -8,22 +8,24 @@
 </head>
 <body>
   <header><h1>Weather App</h1></header>
-  <h2>Get the current weather for your city</h2>
-  <form>
-    <label for="locationInput">Enter a city: </label>
-    <input id="locationInput" placeholder="Enter a city" required>
-    <p id="inputErrWrapper"></p>
-    <button>Get Weather</button>  
-  </form>
-  <div class="current-temp-wrapper">
-    <h2>Current Temperature</h2>
-    <p id="currentTemp">-</p>
-    <div class="icon-wrapper">
+  <main>
+    <h2>Get the current weather for your city</h2>
+    <form>
+      <label for="locationInput">Enter a city: </label>
+      <input id="locationInput" placeholder="Enter a city" required>
+      <p id="inputErrWrapper"></p>
+      <button>Get Weather</button>  
+    </form>
+    <div class="current-temp-wrapper">
+      <h2>Current Temperature</h2>
+      <p id="currentTemp">-</p>
+      <div class="icon-wrapper">
+      </div>
     </div>
-  </div>
-  <h2 class="hourly-forecast-heading">Hourly Forecast</h2>
-  <div class="hourly-forecast-wrapper">
-  </div>
+    <h2 class="hourly-forecast-heading">Hourly Forecast</h2>
+    <div class="hourly-forecast-wrapper">
+    </div>
+  </main>
   <footer>
     <p>Hosted by </p>
     <img src="./images/DO_Logo_horizontal_blue.svg" alt="digital ocean logo">
