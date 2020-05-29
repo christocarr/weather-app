@@ -37,16 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       showLocation(returnedData.timezone);
       showCurrentTemperature(returnedData);
-      showHourlyWeather(returnedData);
+      showHourlyForecast(returnedData);
       showIcon(returnedData.current.weather[0].icon);
-      showDailyForecast(returnedData.daily);
+      showDailyForecast(returnedData);
     }
   };
 
   getWeather(weatherData);
 
   //create celsius or fahrenheit
-  const getTempScale = data => tempScale = data.includes('America') ? `&deg;F` : `&deg;C`;
+  const getTempScale = (data) =>
+    (tempScale = data.includes('America') ? `&deg;F` : `&deg;C`);
 
   //show users location city
   const showLocation = (data) => {
@@ -62,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentTempPara.innerHTML = `${Math.round(currentTemp)}${scale}`;
   };
 
-  const showHourlyWeather = (data) => {
+  const showHourlyForecast = (data) => {
     const scale = getTempScale(data.timezone); //get celsius or fahrenheit
     //get time of forecasted data from data.hourly.dt
     const hourlyArr = data.hourly;
@@ -102,8 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //show daily forecast
   const showDailyForecast = (data) => {
+    console.log(data);
+    const scale = getTempScale(data.timezone);
     // get unix times in data.dt
-    const unixTimeArr = data.map((day) => day.dt);
+    const unixTimeArr = data.daily.map((day) => day.dt);
 
     // create an array of days of week from unixTimeArr
     const daysOfWeek = [
@@ -122,10 +125,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     for (let i = 1; i < daysArr.length; i++) {
+      const minTemp = Math.round(data.daily[i].temp.min);
+      const maxTemp = Math.round(data.daily[i].temp.max);
+
       const dayDiv = document.createElement('div');
       const dayPara = document.createElement('p');
+      const minMaxPara = document.createElement('p');
+
       dayPara.textContent = daysArr[i];
+      minMaxPara.innerHTML = `${minTemp}/${maxTemp}${scale}`;
+
       dayDiv.appendChild(dayPara);
+      dayDiv.appendChild(minMaxPara);
       dailyForecastWrapper.appendChild(dayDiv);
     }
   };
