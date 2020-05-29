@@ -97,26 +97,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //show daily forecast
   const showDailyForecast = (data) => {
-    console.log(data);
+
     // get unix times in data.dt
     const unixTimeArr = data.map((day) => day.dt);
-    console.log(unixTimeArr);
+    
     // create an array of days of week from unixTimeArr
+    const daysOfWeek = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+    ];
     const daysArr = unixTimeArr.map((unixTime) => {
-      const daysOfWeek = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-      ];
       const date = new Date(unixTime * 1000);
-      console.log(date);
       const day = date.getDay();
       return daysOfWeek[day];
     });
+
+    for (let i = 1; i < daysArr.length; i++) {
+      const dayDiv = document.createElement('div')
+      const dayPara = document.createElement('p')
+      dayPara.textContent = daysArr[i]
+      dayDiv.appendChild(dayPara)
+      dailyForecastWrapper.appendChild(dayDiv)
+    }
   };
 
   const showIcon = (iconCode) => {
