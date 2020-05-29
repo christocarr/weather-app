@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const hourlyForecastWrapper = document.querySelector(
     '.hourly-forecast-wrapper'
   );
+  const dailyForecastWrapper = document.querySelector(
+    '.daily-forecast-wrapper'
+  );
 
   //get users location by using IP address
   const IPLocation = async () => {
@@ -28,19 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (returnedData.cod === '404') {
       console.log('Could not get data');
     } else {
-      console.log(returnedData);
-      showLocation(returnedData.timezone)
+      showLocation(returnedData.timezone);
       showTemperature(returnedData);
       showIcon(returnedData.current.weather[0].icon);
+      showDailyForecast(returnedData.daily);
     }
   };
 
   getWeather(weatherData);
 
   const showLocation = (data) => {
-    const location = data.split('/')
-    locationHeading.textContent = location[1]
-  }
+    const location = data.split('/');
+    locationHeading.textContent = location[1];
+  };
 
   const showTemperature = (data) => {
     const currentTemp = data.current.temp;
@@ -90,6 +93,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
       hourlyForecastWrapper.appendChild(hourlyTempDiv);
     }
+  };
+
+  //show daily forecast
+  const showDailyForecast = (data) => {
+    console.log(data);
+    // get unix times in data.dt
+    const unixTimeArr = data.map((day) => day.dt);
+    console.log(unixTimeArr);
+    // create an array of days of week from unixTimeArr
+    const daysArr = unixTimeArr.map((unixTime) => {
+      const daysOfWeek = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ];
+      const date = new Date(unixTime * 1000);
+      console.log(date);
+      const day = date.getDay();
+      return daysOfWeek[day];
+    });
   };
 
   const showIcon = (iconCode) => {
