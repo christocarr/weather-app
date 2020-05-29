@@ -24,7 +24,7 @@ main {
   height: 80vh;
 }
 
-form {
+/* form {
   margin: auto;
   width: 60%;
 }
@@ -61,7 +61,7 @@ form button:hover {
   height: 1.5rem;
   padding: 0.2rem;
   margin: 0;
-}
+} */
 
 .current-temp-wrapper {
   display: flex;
