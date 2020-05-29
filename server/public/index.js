@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dayDiv.appendChild(dayPara);
       dayDiv.appendChild(minMaxPara);
       dayDiv.appendChild(img)
-
+      dayDiv.classList.add('fade-in');
       dailyForecastWrapper.appendChild(dayDiv);
     }
   };
