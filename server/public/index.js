@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //show daily forecast
   const showDailyForecast = (data) => {
-    console.log(data);
     const scale = getTempScale(data.timezone);
     // get unix times in data.dt
     const unixTimeArr = data.daily.map((day) => day.dt);
@@ -131,12 +130,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const dayDiv = document.createElement('div');
       const dayPara = document.createElement('p');
       const minMaxPara = document.createElement('p');
+      const img = document.createElement('img');
 
       dayPara.textContent = daysArr[i];
       minMaxPara.innerHTML = `${minTemp}/${maxTemp}${scale}`;
+      img.setAttribute('src', `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`)
 
       dayDiv.appendChild(dayPara);
       dayDiv.appendChild(minMaxPara);
+      dayDiv.appendChild(img)
+
       dailyForecastWrapper.appendChild(dayDiv);
     }
   };
