@@ -46,15 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getWeather(weatherData);
 
   //create celsius or fahrenheit
-  const getTempScale = (data) => {
-    let tempScale;
-    if (data.includes('America')) {
-      tempScale = `&deg;F`;
-    } else {
-      tempScale = `&deg;C`;
-    }
-    return tempScale;
-  };
+  const getTempScale = data => tempScale = data.includes('America') ? `&deg;F` : `&deg;C`;
 
   //show users location city
   const showLocation = (data) => {
