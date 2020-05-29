@@ -14,17 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const returnedData = {};
     const response = await fetch('http://ip-api.com/json');
     const data = await response.json();
-    returnedData.lat = data.lat
-    returnedData.lon = data.lon
-    returnedData.location = data.timezone.split('/')[1]
-    return returnedData
+    returnedData.lat = data.lat;
+    returnedData.lon = data.lon;
+    returnedData.location = data.timezone.split('/')[1];
+    return returnedData;
   };
 
   // get weather from server
   const weatherData = async () => {
     const data = await IPLocation();
     const windowLocation = window.location;
-    const response = await fetch(`${windowLocation.origin}/${data.lat},${data.lon},${data.location}`);
+    const response = await fetch(
+      `${windowLocation.origin}/${data.lat},${data.lon},${data.location}`
+    );
     return response.json();
   };
 
@@ -33,10 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (returnedData.cod === '404') {
       console.log('Could not get data');
     } else {
-      console.log(returnedData)
       showLocation(returnedData.timezone);
       showCurrentTemperature(returnedData);
-      showHourlyWeather(returnedData)
+      showHourlyWeather(returnedData);
       showIcon(returnedData.current.weather[0].icon);
       showDailyForecast(returnedData.daily);
     }
@@ -44,27 +45,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getWeather(weatherData);
 
+  //create celsius or fahrenheit
+  const getTempScale = (data) => {
+    let tempScale;
+    if (data.includes('America')) {
+      tempScale = `&deg;F`;
+    } else {
+      tempScale = `&deg;C`;
+    }
+    return tempScale;
+  };
+
+  //show users location city
   const showLocation = (data) => {
     const location = data.split('/');
     locationHeading.textContent = location[1];
   };
 
   const showCurrentTemperature = (data) => {
+    const scale = getTempScale(data.timezone); //get celsius or fahrenheit
     const currentTemp = data.current.temp;
     currentTempPara.classList.add('fade-in');
 
-    //if location is in US then show fahrenheit
-    if (data.timezone.includes('America')) {
-      currentTempPara.innerHTML = `${Math.round(
-        (currentTemp * 9) / 5 + 32
-      )}&deg;F`;
-    } else {
-      // else show celsius
-      currentTempPara.innerHTML = `${Math.round(currentTemp)}&deg;C`;
-    }
-  }
+    currentTempPara.innerHTML = `${Math.round(currentTemp)}${scale}`;
+  };
 
   const showHourlyWeather = (data) => {
+    const scale = getTempScale(data.timezone); //get celsius or fahrenheit
     //get time of forecasted data from data.hourly.dt
     const hourlyArr = data.hourly;
     const unixTimeArr = [];
@@ -88,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       //add fadeIn animation to hourly forecast
       hourlyTempDiv.classList.add('fade-in');
       time.textContent = hoursArr[i];
-      temp.innerHTML = `${Math.round(data.hourly[i].temp)}&deg;C`;
+      temp.innerHTML = `${Math.round(data.hourly[i].temp)}${scale}`;
       img.setAttribute(
         'src',
         `http://openweathermap.org/img/wn/${data.hourly[i].weather[0].icon}@2x.png`
@@ -103,10 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //show daily forecast
   const showDailyForecast = (data) => {
-
     // get unix times in data.dt
     const unixTimeArr = data.map((day) => day.dt);
-    
+
     // create an array of days of week from unixTimeArr
     const daysOfWeek = [
       'Sunday',
@@ -124,11 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     for (let i = 1; i < daysArr.length; i++) {
-      const dayDiv = document.createElement('div')
-      const dayPara = document.createElement('p')
-      dayPara.textContent = daysArr[i]
-      dayDiv.appendChild(dayPara)
-      dailyForecastWrapper.appendChild(dayDiv)
+      const dayDiv = document.createElement('div');
+      const dayPara = document.createElement('p');
+      dayPara.textContent = daysArr[i];
+      dayDiv.appendChild(dayPara);
+      dailyForecastWrapper.appendChild(dayDiv);
     }
   };
 
