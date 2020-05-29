@@ -21,18 +21,24 @@ app.use((req, res, next) => {
 //send files when app started
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-  res.sendFile(path.join(__dirname, 'public', 'main.css'))
+  res.sendFile(path.join(__dirname, 'public', 'main.css'));
 });
 
-app.get('/:coordinates', async (req, res) => {
-  const coordinates = req.params.coordinates; //comes from users IP location
-  const coordinatesArr = coordinates.split(',')
+app.get('/:data', async (req, res) => {
+  const reqData = req.params.data; //comes from users IP location
+  dataArr = reqData.split(',');
+  const [lat, lon, location] = dataArr;
+  let units;
+  if (location === 'America') {
+    units = 'imperial';
+  } else {
+    units = 'metric';
+  }
   const data = await fetch(
-    `http://api.openweathermap.org/data/2.5/onecall?lat=${coordinatesArr[0]}&lon=${coordinatesArr[1]}&exclude={minutely}&appid=${APIKey}&units=metric`
+    `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={minutely}&appid=${APIKey}&units=${units}`
   );
   const json = await data.json();
   res.json(json);
-  
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
