@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('Could not get data');
     } else {
       showLocation(returnedData.timezone);
-      showTemperature(returnedData);
+      showCurrentTemperature(returnedData);
+      showHourlyWeather(returnedData)
       showIcon(returnedData.current.weather[0].icon);
       showDailyForecast(returnedData.daily);
     }
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     locationHeading.textContent = location[1];
   };
 
-  const showTemperature = (data) => {
+  const showCurrentTemperature = (data) => {
     const currentTemp = data.current.temp;
     currentTempPara.classList.add('fade-in');
 
@@ -58,7 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // else show celsius
       currentTempPara.innerHTML = `${Math.round(currentTemp)}&deg;C`;
     }
+  }
 
+  const showHourlyWeather = (data) => {
     //get time of forecasted data from data.hourly.dt
     const hourlyArr = data.hourly;
     const unixTimeArr = [];
