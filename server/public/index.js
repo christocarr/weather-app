@@ -11,18 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //get users location by using IP address
   const IPLocation = async () => {
-    const coordArr = [];
+    const returnedData = {};
     const response = await fetch('http://ip-api.com/json');
     const data = await response.json();
-    coordArr.push(data.lat, data.lon);
-    return coordArr;
+    returnedData.lat = data.lat
+    returnedData.lon = data.lon
+    returnedData.location = data.timezone.split('/')[1]
+    return returnedData
   };
 
   // get weather from server
   const weatherData = async () => {
-    const coordinates = await IPLocation();
+    const data = await IPLocation();
     const windowLocation = window.location;
-    const response = await fetch(`${windowLocation.origin}/${coordinates}`);
+    const response = await fetch(`${windowLocation.origin}/${data.lat},${data.lon},${data.location}`);
     return response.json();
   };
 
@@ -31,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (returnedData.cod === '404') {
       console.log('Could not get data');
     } else {
+      console.log(returnedData)
       showLocation(returnedData.timezone);
       showCurrentTemperature(returnedData);
       showHourlyWeather(returnedData)
