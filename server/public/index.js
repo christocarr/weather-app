@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('loaded');
+  const locationHeading = document.querySelector('.location-heading');
   const currentTempPara = document.getElementById('currentTemp');
   const iconWrapper = document.querySelector('.icon-wrapper');
   const hourlyForecastWrapper = document.querySelector(
@@ -26,15 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const getWeather = async (callback) => {
     const returnedData = await callback();
     if (returnedData.cod === '404') {
-      console.log('Could not get data')
+      console.log('Could not get data');
     } else {
-    console.log(returnedData)
-    showTemperature(returnedData);
-    showIcon(returnedData.current.weather[0].icon);
+      console.log(returnedData);
+      showLocation(returnedData.timezone)
+      showTemperature(returnedData);
+      showIcon(returnedData.current.weather[0].icon);
     }
   };
 
   getWeather(weatherData);
+
+  const showLocation = (data) => {
+    const location = data.split('/')
+    locationHeading.textContent = location[1]
+  }
 
   const showTemperature = (data) => {
     const currentTemp = data.current.temp;
@@ -71,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const temp = document.createElement('p');
       const img = document.createElement('img');
       //add fadeIn animation to hourly forecast
-      hourlyTempDiv.classList.add('fade-in')
+      hourlyTempDiv.classList.add('fade-in');
       time.textContent = hoursArr[i];
       temp.innerHTML = `${Math.round(data.hourly[i].temp)}&deg;C`;
       img.setAttribute(
