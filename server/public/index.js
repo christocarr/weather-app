@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const locationHeading = document.querySelector('.location-heading');
+  const currentTempWrapper = document.querySelector('.current-temp-wrapper')
   const currentTempPara = document.getElementById('currentTemp');
   const iconWrapper = document.querySelector('.icon-wrapper');
   const hourlyForecastWrapper = document.querySelector(
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (returnedData.cod === '404') {
       console.log('Could not get data');
     } else {
+      console.log(returnedData);
       showLocation(returnedData.timezone);
       showCurrentTemperature(returnedData);
       showHourlyForecast(returnedData);
@@ -58,9 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const showCurrentTemperature = (data) => {
     const scale = getTempScale(data.timezone); //get celsius or fahrenheit
     const currentTemp = data.current.temp;
+    const uvi = data.current.uvi;
+    const wind = data.current.wind_speed;
+
     currentTempPara.classList.add('fade-in');
 
     currentTempPara.innerHTML = `${Math.round(currentTemp)}${scale}`;
+
+    const uviPara = document.createElement('p');
+    const windPara = document.createElement('p');
+    uviPara.textContent = uvi;
+    windPara.textContent = wind;
+    currentTempWrapper.appendChild(uviPara)
+    currentTempWrapper.appendChild(windPara)
   };
 
   const showHourlyForecast = (data) => {
@@ -134,11 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       dayPara.textContent = daysArr[i];
       minMaxPara.innerHTML = `${minTemp}/${maxTemp}${scale}`;
-      img.setAttribute('src', `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`)
+      img.setAttribute(
+        'src',
+        `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`
+      );
 
       dayDiv.appendChild(dayPara);
       dayDiv.appendChild(minMaxPara);
-      dayDiv.appendChild(img)
+      dayDiv.appendChild(img);
       dayDiv.classList.add('fade-in');
       dailyForecastWrapper.appendChild(dayDiv);
     }
