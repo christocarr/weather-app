@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     uviPara.textContent = `UV Index: ${uvi}`;
     windPara.textContent = `Wind speed: ${wind}`;
-    currentWeatherWrapper.appendChild(uviPara);
-    currentWeatherWrapper.appendChild(windPara);
+    currentWeatherDetails.appendChild(uviPara);
+    currentWeatherDetails.appendChild(windPara);
   };
 
   const showHourlyForecast = (data) => {
