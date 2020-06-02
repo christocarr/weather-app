@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const locationHeading = document.querySelector('.location-heading');
-  const currentWeatherWrapper = document.querySelector(
-    '.current-weather-wrapper'
-  );
+  const currentWeatherWrapper = document.querySelector('.current-weather-wrapper');
   const currentTempPara = document.getElementById('currentTemp');
   const currentWeatherIcon = document.querySelector('.current-weather-icon');
-  const hourlyForecastWrapper = document.querySelector(
-    '.hourly-forecast-wrapper'
-  );
-  const dailyForecastWrapper = document.querySelector(
-    '.daily-forecast-wrapper'
-  );
+  const currentWeatherDetails = document.querySelector('.current-weather-details');
+  const hourlyForecastWrapper = document.querySelector('.hourly-forecast-wrapper');
+  const dailyForecastWrapper = document.querySelector('.daily-forecast-wrapper');
 
   //get users location by using IP address
   const IPLocation = async () => {
@@ -27,9 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const weatherData = async () => {
     const data = await IPLocation();
     const windowLocation = window.location;
-    const response = await fetch(
-      `${windowLocation.origin}/${data.lat},${data.lon},${data.location}`
-    );
+    const response = await fetch(`${windowLocation.origin}/${data.lat},${data.lon},${data.location}`);
     return response.json();
   };
 
@@ -48,8 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getWeather(weatherData);
 
   //create celsius or fahrenheit
-  const getTempScale = (data) =>
-    (tempScale = data.includes('America') ? `&deg;F` : `&deg;C`);
+  const getTempScale = (data) => (tempScale = data.includes('America') ? `&deg;F` : `&deg;C`);
 
   //show users location city
   const showLocation = (data) => {
@@ -72,15 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentTempPara.innerHTML = `${Math.round(currentTemp)}${scale}`;
 
-    img.setAttribute(
-      'src',
-      `http://openweathermap.org/img/wn/${iconCode}@2x.png`
-    );
+    img.setAttribute('src', `http://openweathermap.org/img/wn/${iconCode}@2x.png`);
 
     currentWeatherIcon.appendChild(img);
 
-    uviPara.textContent = uvi;
-    windPara.textContent = wind;
+    uviPara.textContent = `UV Index: ${uvi}`;
+    windPara.textContent = `Wind speed: ${wind}`;
     currentWeatherWrapper.appendChild(uviPara);
     currentWeatherWrapper.appendChild(windPara);
   };
@@ -111,10 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       hourlyTempDiv.classList.add('fade-in');
       time.textContent = hoursArr[i];
       temp.innerHTML = `${Math.round(data.hourly[i].temp)}${scale}`;
-      img.setAttribute(
-        'src',
-        `http://openweathermap.org/img/wn/${data.hourly[i].weather[0].icon}@2x.png`
-      );
+      img.setAttribute('src', `http://openweathermap.org/img/wn/${data.hourly[i].weather[0].icon}@2x.png`);
       hourlyTempDiv.appendChild(time);
       hourlyTempDiv.appendChild(temp);
       hourlyTempDiv.appendChild(img);
@@ -130,15 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const unixTimeArr = data.daily.map((day) => day.dt);
 
     // create an array of days of week from unixTimeArr
-    const daysOfWeek = [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday',
-    ];
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const daysArr = unixTimeArr.map((unixTime) => {
       const date = new Date(unixTime * 1000);
       const day = date.getDay();
@@ -156,10 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       dayPara.textContent = daysArr[i];
       minMaxPara.innerHTML = `${minTemp}/${maxTemp}${scale}`;
-      img.setAttribute(
-        'src',
-        `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`
-      );
+      img.setAttribute('src', `http://openweathermap.org/img/wn/${data.daily[i].weather[0].icon}@2x.png`);
 
       dayDiv.appendChild(dayPara);
       dayDiv.appendChild(minMaxPara);
