@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const locationHeading = document.querySelector('.location-heading');
-  const currentTempWrapper = document.querySelector('.current-temp-wrapper')
+  const currentWeatherWrapper = document.querySelector('.current-weather-wrapper')
   const currentTempPara = document.getElementById('currentTemp');
   const iconWrapper = document.querySelector('.icon-wrapper');
   const hourlyForecastWrapper = document.querySelector(
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const uvi = data.current.uvi;
     const wind = data.current.wind_speed;
 
-    currentTempPara.classList.add('fade-in');
+    currentWeatherWrapper.classList.add('fade-in');
 
     currentTempPara.innerHTML = `${Math.round(currentTemp)}${scale}`;
 
@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const windPara = document.createElement('p');
     uviPara.textContent = uvi;
     windPara.textContent = wind;
-    currentTempWrapper.appendChild(uviPara)
-    currentTempWrapper.appendChild(windPara)
+    currentWeatherWrapper.appendChild(uviPara)
+    currentWeatherWrapper.appendChild(windPara)
   };
 
   const showHourlyForecast = (data) => {
