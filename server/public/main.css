@@ -31,9 +31,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
-  margin: auto;
-  margin-top: 1rem;
+  width: 70%;
+  margin: 1rem auto;
 }
 
 .current-weather-wrapper h2, .hourly-forecast-heading, .daily-forecast-heading {
@@ -44,6 +43,16 @@ main {
 .current-weather-wrapper p {
   margin: 0;
   font-size: 1.8rem;
+}
+
+.current-weather-details {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.current-weather-details p {
+  font-size: 1rem;
 }
 
 .hourly-forecast-wrapper, .daily-forecast-wrapper {
