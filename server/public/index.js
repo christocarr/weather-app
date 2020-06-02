@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const locationHeading = document.querySelector('.location-heading');
   const currentWeatherWrapper = document.querySelector('.current-weather-wrapper')
   const currentTempPara = document.getElementById('currentTemp');
-  const iconWrapper = document.querySelector('.icon-wrapper');
+  const currentWeatherIcon = document.querySelector('.current-weather-icon');
   const hourlyForecastWrapper = document.querySelector(
     '.hourly-forecast-wrapper'
   );
