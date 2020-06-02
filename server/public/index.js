@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const locationHeading = document.querySelector('.location-heading');
-  const currentWeatherWrapper = document.querySelector('.current-weather-wrapper')
+  const currentWeatherWrapper = document.querySelector(
+    '.current-weather-wrapper'
+  );
   const currentTempPara = document.getElementById('currentTemp');
   const currentWeatherIcon = document.querySelector('.current-weather-icon');
   const hourlyForecastWrapper = document.querySelector(
@@ -36,11 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (returnedData.cod === '404') {
       console.log('Could not get data');
     } else {
-      console.log(returnedData);
       showLocation(returnedData.timezone);
       showCurrentTemperature(returnedData);
       showHourlyForecast(returnedData);
-      showIcon(returnedData.current.weather[0].icon);
       showDailyForecast(returnedData);
     }
   };
@@ -58,21 +58,31 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const showCurrentTemperature = (data) => {
+    const img = document.createElement('img');
+    const uviPara = document.createElement('p');
+    const windPara = document.createElement('p');
+
     const scale = getTempScale(data.timezone); //get celsius or fahrenheit
     const currentTemp = data.current.temp;
     const uvi = data.current.uvi;
     const wind = data.current.wind_speed;
+    const iconCode = data.current.weather[0].icon;
 
     currentWeatherWrapper.classList.add('fade-in');
 
     currentTempPara.innerHTML = `${Math.round(currentTemp)}${scale}`;
 
-    const uviPara = document.createElement('p');
-    const windPara = document.createElement('p');
+    img.setAttribute(
+      'src',
+      `http://openweathermap.org/img/wn/${iconCode}@2x.png`
+    );
+
+    currentWeatherIcon.appendChild(img);
+
     uviPara.textContent = uvi;
     windPara.textContent = wind;
-    currentWeatherWrapper.appendChild(uviPara)
-    currentWeatherWrapper.appendChild(windPara)
+    currentWeatherWrapper.appendChild(uviPara);
+    currentWeatherWrapper.appendChild(windPara);
   };
 
   const showHourlyForecast = (data) => {
@@ -157,19 +167,5 @@ document.addEventListener('DOMContentLoaded', () => {
       dayDiv.classList.add('fade-in');
       dailyForecastWrapper.appendChild(dayDiv);
     }
-  };
-
-  const showIcon = (iconCode) => {
-    const img = document.createElement('img');
-
-    // add fade in class to icon
-    img.classList.add('fade-in');
-
-    img.setAttribute(
-      'src',
-      `http://openweathermap.org/img/wn/${iconCode}@2x.png`
-    );
-    iconWrapper.innerHTML = '';
-    iconWrapper.appendChild(img);
   };
 });
