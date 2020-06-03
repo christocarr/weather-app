@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentWeatherIcon.appendChild(img);
 
     uviPara.textContent = `UV Index: ${uvi}`;
-    windPara.textContent = `Wind speed: ${wind}`;
+    windPara.textContent = `Wind speed: ${wind}m/s`;
     currentWeatherDetails.appendChild(uviPara);
     currentWeatherDetails.appendChild(windPara);
   };
