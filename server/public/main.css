@@ -1,5 +1,5 @@
 html {
-  height: 100%
+  height: 100%;
 }
 
 body {
@@ -18,7 +18,8 @@ header {
   height: 10%;
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: 600;
 }
 
@@ -44,7 +45,9 @@ section:nth-of-type(odd) {
   margin: 1rem auto 0 auto;
 }
 
-.current-weather-heading, .hourly-forecast-heading, .daily-forecast-heading {
+.current-weather-heading,
+.hourly-forecast-heading,
+.daily-forecast-heading {
   margin: 0 0 1rem 0;
   font-weight: 100;
 }
@@ -64,7 +67,8 @@ section:nth-of-type(odd) {
   font-size: 1rem;
 }
 
-.hourly-forecast-wrapper, .daily-forecast-wrapper {
+.hourly-forecast-wrapper,
+.daily-forecast-wrapper {
   width: 70%;
   min-height: 150px;
   white-space: nowrap;
@@ -73,16 +77,19 @@ section:nth-of-type(odd) {
   margin: 1rem auto 0 auto;
 }
 
-.hourly-forecast-wrapper div, .daily-forecast-wrapper div {
+.hourly-forecast-wrapper div,
+.daily-forecast-wrapper div {
   display: inline-block;
   margin: 0 0.5rem;
 }
 
-.hourly-forecast-wrapper p, .daily-forecast-wrapper p {
+.hourly-forecast-wrapper p,
+.daily-forecast-wrapper p {
   margin-top: 0;
 }
 
-.hourly-forecast-wrapper div img, .daily-forecast-wrapper div img {
+.hourly-forecast-wrapper div img,
+.daily-forecast-wrapper div img {
   width: 50px;
 }
 
@@ -92,17 +99,21 @@ section:nth-of-type(odd) {
 
 .low-uvi-color {
   color: #5fbb5c;
+  padding: 0.2rem 0.5rem;
 }
 
 .mid-uvi-color {
   color: #f5f504;
+  padding: 0.2rem 0.5rem;
 }
 
 .high-uvi-color {
   color: orange;
+  padding: 0.2rem 0.5rem;
 }
 .vhigh-uvi-color {
   color: red;
+  padding: 0.2rem 0.5rem;
 }
 
 @keyframes fadeIn {
@@ -139,19 +150,19 @@ footer img {
 
 @media only screen and (min-width: 1024px) {
   main {
-    width:60%;
+    width: 60%;
     margin: auto;
   }
 
-  .hourly-forecast-wrapper, .daily-forecast-wrapper {
+  .hourly-forecast-wrapper,
+  .daily-forecast-wrapper {
     width: 90%;
   }
 }
 
-
 @media only screen and (min-width: 1024px) {
   main {
-    width:50%;
+    width: 50%;
     margin: auto;
   }
 }
