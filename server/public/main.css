@@ -98,21 +98,21 @@ section:nth-of-type(odd) {
 }
 
 .low-uvi-color {
-  color: #5fbb5c;
+  background-color: #5fbb5c;
   padding: 0.2rem 0.5rem;
 }
 
 .mid-uvi-color {
-  color: #f5f504;
+  background-color: #f5f504;
   padding: 0.2rem 0.5rem;
 }
 
 .high-uvi-color {
-  color: orange;
+  background-color: orange;
   padding: 0.2rem 0.5rem;
 }
 .vhigh-uvi-color {
-  color: red;
+  background-color: red;
   padding: 0.2rem 0.5rem;
 }
 
