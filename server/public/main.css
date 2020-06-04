@@ -29,7 +29,7 @@ main {
 }
 
 section:nth-of-type(odd) {
-  background-color: #a3acdb;
+  background-color: #d3e0f0;
 }
 
 .current-weather-wrapper {
