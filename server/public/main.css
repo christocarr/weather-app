@@ -90,6 +90,21 @@ section:nth-of-type(odd) {
   animation: fadeIn ease 1.2s;
 }
 
+.low-uvi-color {
+  color: #5fbb5c;
+}
+
+.mid-uvi-color {
+  color: #f5f504;
+}
+
+.high-uvi-color {
+  color: orange;
+}
+.vhigh-uvi-color {
+  color: red;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

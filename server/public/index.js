@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const img = document.createElement('img');
     const uviPara = document.createElement('p');
     const windPara = document.createElement('p');
+    const uviSpan = document.createElement('span')
 
     const scale = getTempScale(data.timezone); //get celsius or fahrenheit
     const currentTemp = data.current.temp;
@@ -68,7 +69,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentWeatherIcon.appendChild(img);
 
-    uviPara.textContent = `UV Index: ${uvi}`;
+    //add color to uviPara depending on index
+    if (uvi > 0 && uvi < 3) {
+      uviSpan.classList.add('low-uvi-color')
+      uviSpan.textContent = `Low`;
+    } else if (uvi >= 3 && uvi <= 5) {
+      uviSpan.classList.add('mid-uvi-color')
+      uviSpan.textContent = `Medium`;
+    } else if (uvi >= 6 && uvi <= 7) {
+      uviSpan.classList.add('high-uvi-color')
+      uviSpan.textContent = `High`;
+    } else {
+      uviSpan.classList.add('vhigh-uvi-color')
+      uviSpan.textContent = `Extremely high`;
+    }
+
+    uviPara.textContent = `UV Index: `;
+    uviPara.appendChild(uviSpan)
+    
     windPara.textContent = `Wind speed: ${wind}m/s`;
     currentWeatherDetails.appendChild(uviPara);
     currentWeatherDetails.appendChild(windPara);
