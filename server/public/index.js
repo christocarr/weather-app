@@ -26,14 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const weatherData = async () => {
     const data = await IPLocation();
     const windowLocation = window.location;
-    const response = await fetch(`${windowLocation.origin}/${data.lat},${data.lon},${data.location}`);
-    return response.json();
+    try {
+      const response = await fetch(`${windowLocation.origin}/${data.lat},${data.lon},${data.location}`);
+      return response.json();
+    } catch(err) {
+      alert(`Something went wrong getting the weather data. Please refresh the browser or try later`, err)
+    }
   };
 
   const getWeather = async (callback) => {
     const returnedData = await callback();
     if (returnedData.cod === '404') {
-      console.log('Could not get data');
+      console.error('Could not get data');
     } else {
       showLocation(returnedData.timezone);
       showCurrentTemperature(returnedData);
