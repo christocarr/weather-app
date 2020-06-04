@@ -28,12 +28,7 @@ app.get('/:data', async (req, res) => {
   const reqData = req.params.data; //comes from users IP location
   dataArr = reqData.split(',');
   const [lat, lon, location] = dataArr;
-  let units;
-  if (location === 'America') {
-    units = 'imperial';
-  } else {
-    units = 'metric';
-  }
+  let units = location === 'America' ? 'imperial' : 'metric';
   const data = await fetch(
     `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={minutely}&appid=${APIKey}&units=${units}`
   );
