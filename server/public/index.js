@@ -11,11 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const IPLocation = async () => {
     const returnedData = {};
     const response = await fetch('http://ip-api.com/json');
-    const data = await response.json();
-    returnedData.lat = data.lat;
-    returnedData.lon = data.lon;
-    returnedData.location = data.timezone.split('/')[1];
-    return returnedData;
+    try {
+      const data = await response.json();
+      returnedData.lat = data.lat;
+      returnedData.lon = data.lon;
+      returnedData.location = data.timezone.split('/')[1];
+      return returnedData;
+    } catch(err) {
+      alert(`Something went wrong while getting your location. Please refresh the browser`, err)
+    }
   };
 
   // get weather from server
