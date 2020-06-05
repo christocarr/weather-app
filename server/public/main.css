@@ -34,8 +34,14 @@ main {
   font-size: 2rem;
 }
 
-section:nth-of-type(odd) {
+/* section:nth-of-type(odd) {
   background-color: #d3e0f0;
+} */
+
+hr {
+  width: 80%;
+  border-top: 1px solid #d8d8d8;
+  margin: 4rem auto 3rem auto;
 }
 
 .current-weather-wrapper {
@@ -78,7 +84,7 @@ section:nth-of-type(odd) {
   white-space: nowrap;
   overflow-x: scroll;
   padding: 1rem;
-  margin: 1rem auto 0 auto;
+  margin: auto;
 }
 
 .hourly-forecast-wrapper div,
