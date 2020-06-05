@@ -34,14 +34,10 @@ main {
   font-size: 2rem;
 }
 
-/* section:nth-of-type(odd) {
-  background-color: #d3e0f0;
-} */
-
 hr {
   width: 70%;
   border-top: 1px solid #d8d8d8;
-  margin: 4rem auto 3rem auto;
+  margin: 3rem auto 2rem auto;
 }
 
 .current-weather-wrapper {
@@ -58,7 +54,7 @@ hr {
 .current-weather-heading,
 .hourly-forecast-heading,
 .daily-forecast-heading {
-  margin: 0 0 2rem 0;
+  margin: 0 0 1rem 0;
   font-weight: 100;
 }
 
